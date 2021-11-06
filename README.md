@@ -1,0 +1,2 @@
+# angular-proje
+angular initilizaer
