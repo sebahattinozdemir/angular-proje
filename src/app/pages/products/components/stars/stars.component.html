@@ -1,0 +1,57 @@
+<p class="product-rating" *ngIf="rate">
+    <span class="mr-3" >{{rate}}</span>
+    <!-- 1 star  -->
+    <i
+      [class]="
+        rate == 0
+          ? 'far fa-star'
+          : rate > 0 && rate < 1
+          ? 'fas fa-star-half-alt'
+          : 'fas fa-star'
+      "
+    ></i>
+
+    <!-- 2 star  -->
+    <i
+      [class]="
+        rate > 1 && rate < 2
+          ? 'fas fa-star-half-alt'
+          : rate >= 2
+          ? 'fas fa-star'
+          : 'far fa-star'
+      "
+    ></i>
+
+    <!-- 3 star  -->
+    <i
+      [class]="
+        rate > 2 && rate < 3
+          ? 'fas fa-star-half-alt'
+          : rate >= 3
+          ? 'fas fa-star'
+          : 'far fa-star'
+      "
+    ></i>
+
+    <!-- 4 star  -->
+    <i
+      [class]="
+        rate > 3 && rate < 4
+          ? 'fas fa-star-half-alt'
+          : rate >= 4
+          ? 'fas fa-star'
+          : 'far fa-star'
+      "
+    ></i>
+
+    <!-- 5 star  -->
+    <i
+      [class]="
+        rate > 4 && rate < 5
+          ? 'fas fa-star-half-alt'
+          : rate >= 5
+          ? 'fas fa-star'
+          : 'far fa-star'
+      "
+    ></i>
+  </p>

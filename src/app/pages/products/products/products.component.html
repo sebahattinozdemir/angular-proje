@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>PRODUCTS</h2>
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Image</div>
+      <div class="col col-2" style="margin-left: 5%">Product Name</div>
+      <div class="col col-3">Price</div>
+      <div class="col col-4">Rating</div>
+    </li>
+    <li
+      class="table-row"
+      (click)="navigateProductDetail(product)"
+      *ngFor="let product of productData"
+    >
+      <div class="col col-1" data-label="Job Id">
+        <img src="{{ product.small_image }}" />
+      </div>
+      <div
+        class="col col-2"
+        style="display: flex; align-self: center; margin-left: 5%"
+        data-label="Customer Name"
+      >
+        <p>{{ product.product_name | capitalizefirst }}</p>
+      </div>
+      <div
+        class="col col-3"
+        style="display: flex; align-self: center"
+        data-label="Amount"
+      >
+        $ {{ product.product_price }}
+      </div>
+      <div
+        class="col col-4"
+        style="display: flex; align-self: center"
+        data-label="Payment Status"
+      >
+        <app-stars [rate]="product.average_rating"></app-stars>
+      </div>
+    </li>
+  </ul>
+</div>

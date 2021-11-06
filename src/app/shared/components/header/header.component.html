@@ -1,0 +1,11 @@
+<div class="header">
+  <a href="#default" class="logo">CompanyLogo</a>
+  <div class="header-right">
+    <a  [routerLink]="'/'" class="active">Home</a>
+    <a  [routerLink]="'product'" >Product</a>
+    <a  *ngIf="!auth.loggedIn" (click)="openModal()" style="width: auto">Login</a>
+    <a  *ngIf="auth.loggedIn" (click)="logOut()" style="width: auto">Logout</a>
+  </div>
+</div>
+
+<app-login-modal *ngIf="isLoginModalOpen" (closeModal)="closeModal()" ></app-login-modal>

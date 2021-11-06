@@ -1,0 +1,73 @@
+<div class="modal">
+  <form
+    class="modal-content animate"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="imgcontainer">
+      <span (click)="close()" class="close" title="Close Modal">&times;</span>
+      <img
+        src="./../../../assets/images/img_avatar2.png"
+        alt="Avatar"
+        class="avatar"
+      />
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input
+        type="text"
+        placeholder="Enter Username"
+        type="text"
+        name="uname"
+        formControlName="username"
+        required
+      />
+
+      <div *ngIf="username.invalid && (username.dirty || username.touched)">
+        <div *ngIf="username.errors?.required">
+          <span style="color: tomato; font-size: small">{{
+            "Username field is required."
+          }}</span>
+        </div>
+      </div>
+
+      <label for="psw"><b>Password</b></label>
+      <input
+        type="password"
+        placeholder="Enter Password"
+        name="psw"
+        required
+        formControlName="password"
+        maxlength="25"
+      />
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div *ngIf="password.errors?.required">
+          <span style="color: tomato; font-size: small">{{
+            "Password field is required."
+          }}</span>
+        </div>
+
+        <div *ngIf="password.errors?.minlength">
+          <span style="color: tomato; font-size: small">{{
+            "You should be more than 6 characters"
+          }}</span>
+        </div>
+        <div *ngIf="password.errors?.maxlength">
+          <span style="color: tomato; font-size: small">{{
+            "You should not be more than 16 characters"
+          }}</span>
+        </div>
+      </div>
+      <button type="submit" [disabled]="!validForm">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember" /> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color: #f1f1f1">
+      <button type="button" (click)="close()" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,93 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <img [src]="product.big_image"/>
+        </div>
+        <div class="col-8 text-center">
+            <h3 class="mt-2" >{{product.product_name}}</h3>
+            <div class="description my-2">
+                <p>{{product.product_description}}</p>
+            </div>
+            <div class="price d-flex justify-content-end my-2">
+                <p class="mr-auto" > <span class="font-weight-bold" >Product Price</span> ${{product.product_price}}</p>
+                <p> <span class="font-weight-bold" >Arrival Date</span> {{product.arrival_date | date: 'dd/MM/yyyy' }}  </p>
+            </div>`
+
+            <div class="comments d-flex justify-content-end align-self-end ">
+                <p class="mr-auto"><span class="font-weight-bold">Comments</span> {{product.numberof_comments}} </p>
+                
+                <app-stars [rate]="product.average_rating" ></app-stars>
+
+            </div>
+
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+
+                <li [ngbNavItem]="1">
+                  <a ngbNavLink>Detailed Info</a>
+                  <ng-template ngbNavContent>
+                    <p>{{product.product_detail_info}}</p>
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                  <a ngbNavLink>Comments</a>
+                  <ng-template ngbNavContent>
+                    <div *ngFor="let item of product.productComments" >
+                    <p class="d-flex justify-content-between">
+                        <span>{{item.comment}}</span>
+                        <span>
+                           <app-stars [rate]="item.rate" ></app-stars>
+                        </span>
+                        <span>{{item.date | date: 'dd/MM/yyyy'}}</span>
+                    </p>
+                    
+                    </div>
+
+                    <div class="d-flex my-2">
+                        <button class="btn btn-primary" (click)="modalService.open(content, { centered: true });
+                        " >Add Comment</button>
+                    </div>
+                  </ng-template>
+
+                </li>
+
+              </ul>
+              
+              <div [ngbNavOutlet]="nav" class="mt-2"></div>
+            
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Add Comment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="comment">Comment</label>
+      <div class="input-group">
+        <input class="form-control" type="text" id="comment" name="comment" [(ngModel)]="comment" />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="star">Give Star</label>
+      <ul class="list-inline rating-list" 
+      *ngFor="let star of stars" style="display: inline-block" >
+        <li (click)="countStar(star)"
+            [ngClass]="{'selected': (star <= selectedValue)}">
+          <i class="fa fa-star"></i>
+        </li> 
+  </ul>
+    </div>
+  
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="addComment()">Add Comment</button>
+  </div>
+</ng-template>
+
